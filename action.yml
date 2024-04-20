@@ -11,4 +11,4 @@ runs:
     - name: Load environment
       shell: ${{ env.shell }}
       run: |
-        yq '. | to_entries | map([.key, "\"" + .value + "\""] | join ("=")) | .[]' "${GITHUB_ACTION_PATH}/env.yml" >> "${GITHUB_ENV}"
+        yq '. | to_entries | map([.key, .value] | join ("=")) | .[]' "${GITHUB_ACTION_PATH}/env.yml" >> "${GITHUB_ENV}"
