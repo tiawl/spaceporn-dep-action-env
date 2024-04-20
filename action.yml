@@ -4,11 +4,11 @@ runs:
   using: "composite"
   steps:
     - name: Install yq
-      shell: ${{ env.shell }}
+      shell: bash
       run: |
         sudo snap install yq
 
     - name: Load environment
-      shell: ${{ env.shell }}
+      shell: bash
       run: |
-        yq "${{ env.bash_from_yaml }}" "${GITHUB_ACTION_PATH}/env.yml" >> "${GITHUB_ENV}"
+        yq '. | to_entries | map([.key, .value] | join ("=")) | .[]' "${GITHUB_ACTION_PATH}/env.yml" >> "${GITHUB_ENV}"
