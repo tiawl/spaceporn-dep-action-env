@@ -16,5 +16,5 @@ jobs:
     - name: Load environment
       shell: bash
       run: |
-        yq '. | to_entries | map([.key, .value] | join ("=")) | .[]' "${GITHUB_ACTION_PATH}/env.yml" >> "${GITHUB_ENV}"
+        yq '. | to_entries | map([.key, .value] | join ("=")) | .[]' "env.yml" >> "${GITHUB_ENV}"
         echo "env.my_var='${{ env.my_var }}'"
