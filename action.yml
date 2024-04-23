@@ -3,11 +3,6 @@ description: 'Share variables between spaceporn dependencies workflows'
 runs:
   using: "composite"
   steps:
-    - name: Install yq
-      shell: bash
-      run: |
-        sudo snap install yq
-
     - name: Load environment
       shell: bash
       run: |
