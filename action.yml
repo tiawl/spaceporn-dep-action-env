@@ -3,12 +3,10 @@ description: 'Share variables between spaceporn dependencies workflows'
 runs:
   using: "composite"
   steps:
-    - uses: actions/setup-go@v5
-
-    - name: Install yq
+    - if: ${{ runner.os == "Windows" }}
       shell: bash
       run: |
-        go install github.com/mikefarah/yq/v4@latest
+        choco install yq
 
     - name: Load environment
       shell: bash
