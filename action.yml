@@ -3,7 +3,16 @@ description: 'Share variables between spaceporn dependencies workflows'
 runs:
   using: "composite"
   steps:
+    - name: Parse env.yml
+      id: parse
+      uses: mikefarah/yq@master
+      with:
+        cmd: yq '. | to_entries | map([.key, .value] | join ("=")) | .[]' "${{ github.action_path }}/env.yml"
+
     - name: Load environment
       shell: bash
       run: |
-        yq '. | to_entries | map([.key, .value] | join ("=")) | .[]' "${GITHUB_ACTION_PATH}/env.yml" >> "${GITHUB_ENV}"
+        for var in ${{ steps.parse.output.result }}
+        do
+          printf '%s\n' "${var}" >> "${GITHUB_ENV}"
+        done
