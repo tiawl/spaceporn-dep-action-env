@@ -3,7 +3,7 @@ description: 'Share variables between spaceporn dependencies workflows'
 runs:
   using: "composite"
   steps:
-    - if: ${{ runner.os == "Windows" }}
+    - if: runner.os == "Windows"
       shell: bash
       run: |
         choco install yq
