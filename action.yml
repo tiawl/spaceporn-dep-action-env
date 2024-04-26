@@ -16,7 +16,7 @@ runs:
         fi
 
     - if: runner.os == 'Windows' && steps.install.outputs.succeed != 'true'
-      use: actions/setup-go@v5
+      uses: actions/setup-go@v5
 
     - name: Install yq with GO on Windows
       if: runner.os == 'Windows' && steps.install.outputs.succeed != 'true'
