@@ -3,12 +3,30 @@ description: 'Share variables between spaceporn dependencies workflows'
 runs:
   using: "composite"
   steps:
-    - if: runner.os == 'Windows'
+    - name: Install yq on Windows
+      if: runner.os == 'Windows'
+      id: install
       shell: bash
       run: |
-        choco install yq
+        if choco install yq || scoop install main/yq || winget install --id MikeFarah.yq
+        then
+          printf 'succeed=true\n' >> "${GITHUB_OUTPUT}"
+        else
+          printf 'succeed=false\n' >> "${GITHUB_OUTPUT}"
+        fi
+
+    - if: runner.os == 'Windows' && steps.install.outputs.succeed != 'true'
+      uses: actions/setup-go@v5
+
+    - name: Install yq with GO on Windows
+      if: runner.os == 'Windows' && steps.install.outputs.succeed != 'true'
+      shell: bash
+      run: |
+        go install github.com/mikefarah/yq/v4@latest
 
     - name: Load environment
+      env:
+        FILTER: '. | to_entries | map([.key, .value] | join ("=")) | .[]'
       shell: bash
       run: |
-        yq '. | to_entries | map([.key, .value] | join ("=")) | .[]' "${GITHUB_ACTION_PATH}/env.yml" >> "${GITHUB_ENV}"
+        yq "${FILTER}" "${GITHUB_ACTION_PATH}/env.yml" >> "${GITHUB_ENV}"
