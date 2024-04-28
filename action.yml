@@ -5,6 +5,10 @@ inputs:
     description: 'The repository name'
     required: false
     default: "${{ github.action_repository }}"
+  path:
+    description: 'The env.yml path'
+    required: false
+    default: "${{ github.action_path }}"
 runs:
   using: "composite"
   steps:
@@ -36,12 +40,7 @@ runs:
     - name: Load environment
       env:
         FILTER: '. | to_entries | map([.key, .value] | join ("=")) | .[]'
-        REPOSITORY: "${{ inputs.repository }}"
+        PATH: "${{ inputs.path }}"
       shell: bash
       run: |
-        if [[ "${REPOSITORY}" == "${GITHUB_ACTION_REPOSITORY}" ]]
-        then
-          yq "${FILTER}" "${GITHUB_ACTION_PATH}/env.yml" >> "${GITHUB_ENV}"
-        else
-          yq "${FILTER}" "${GITHUB_WORKSPACE}/env.yml" >> "${GITHUB_ENV}"
-        fi
+        yq "${FILTER}" "${PATH}/env.yml" >> "${GITHUB_ENV}"
