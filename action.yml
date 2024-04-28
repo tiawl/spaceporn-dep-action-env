@@ -43,4 +43,4 @@ runs:
         ENV_PATH: "${{ inputs.path }}"
       shell: bash
       run: |
-        yq "${FILTER}" "${ENV_PATH}/env.yml" >> "${GITHUB_ENV}"
+        yq "${FILTER}" "${ENV_PATH:-"${GITHUB_ACTION_PATH}"}/env.yml" >> "${GITHUB_ENV}"
