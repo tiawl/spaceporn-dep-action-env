@@ -15,4 +15,4 @@ jobs:
     runs-on: "${{ matrix.os }}"
     steps:
     - uses: actions/checkout@v4
-    - uses: tiawl/spaceporn-dep-action-env@bot
+    - uses: ./

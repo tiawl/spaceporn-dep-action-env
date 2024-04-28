@@ -1,5 +1,14 @@
 name: 'env'
 description: 'Share variables between spaceporn dependencies workflows'
+inputs:
+  repository:
+    description: 'The repository name'
+    required: false
+    default: "${{ github.repository }}"
+  ref:
+    description: 'The ref used by the repository'
+    required: false
+    default: 'trunk'
 runs:
   using: "composite"
   steps:
@@ -10,10 +19,10 @@ runs:
       run: |
         if choco install yq || scoop install main/yq || winget install --id MikeFarah.yq
         then
-          printf 'succeed=true\n' >> "${GITHUB_OUTPUT}"
+          printf 'succeed=true\n'
         else
-          printf 'succeed=false\n' >> "${GITHUB_OUTPUT}"
-        fi
+          printf 'succeed=false\n'
+        fi >> "${GITHUB_OUTPUT}"
 
     - if: runner.os == 'Windows' && steps.install.outputs.succeed != 'true'
       uses: actions/setup-go@v5
@@ -23,6 +32,11 @@ runs:
       shell: bash
       run: |
         go install github.com/mikefarah/yq/v4@latest
+
+    - uses: actions/checkout@v4
+      with:
+        repository: "${{ inputs.repository }}"
+        ref: "${{ inputs.ref }}"
 
     - name: Load environment
       env:
