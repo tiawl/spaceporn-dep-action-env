@@ -1,5 +1,14 @@
 name: 'env'
 description: 'Share variables between spaceporn dependencies workflows'
+inputs:
+  repository:
+    description: 'The repository name'
+    required: false
+    default: "${{ github.repository }}"
+  ref:
+    description: 'The ref used by the repository'
+    required: false
+    default: 'trunk'
 runs:
   using: "composite"
   steps:
@@ -23,6 +32,11 @@ runs:
       shell: bash
       run: |
         go install github.com/mikefarah/yq/v4@latest
+
+    - uses: actions/checkout@v4
+      with:
+        repository: "${{ inputs.repository }}"
+        ref: "${{ inputs.ref }}"
 
     - name: Load environment
       env:
