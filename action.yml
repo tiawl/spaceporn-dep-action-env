@@ -40,7 +40,7 @@ runs:
     - name: Load environment
       env:
         FILTER: '. | to_entries | map([.key, .value] | join ("=")) | .[]'
-        PATH: "${{ inputs.path }}"
+        ENV_PATH: "${{ inputs.path }}"
       shell: bash
       run: |
-        yq "${FILTER}" "${PATH}/env.yml" >> "${GITHUB_ENV}"
+        yq "${FILTER}" "${ENV_PATH}/env.yml" >> "${GITHUB_ENV}"
