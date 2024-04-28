@@ -4,11 +4,11 @@ inputs:
   repository:
     description: 'The repository name'
     required: false
-    default: "${{ github.repository }}"
+    default: "${{ github.action_repository }}"
   ref:
     description: 'The ref used by the repository'
     required: false
-    default: 'trunk'
+    default: "${{ github.action_ref }}"
 runs:
   using: "composite"
   steps:
