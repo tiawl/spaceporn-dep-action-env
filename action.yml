@@ -19,10 +19,10 @@ runs:
       run: |
         if choco install yq || scoop install main/yq || winget install --id MikeFarah.yq
         then
-          printf 'succeed=true\n'
+          printf 'succeed=true\n' >> "${GITHUB_OUTPUT}"
         else
-          printf 'succeed=false\n'
-        fi >> "${GITHUB_OUTPUT}"
+          printf 'succeed=false\n' >> "${GITHUB_OUTPUT}"
+        fi
 
     - if: runner.os == 'Windows' && steps.install.outputs.succeed != 'true'
       uses: actions/setup-go@v5
