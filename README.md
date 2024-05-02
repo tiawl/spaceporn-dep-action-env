@@ -2,9 +2,9 @@
 
 A composite action to parse an `env.yml` into a specified directory and load the content as variables into the [env context][6] of the current workflow.
 
-## Disclaimer
+## Important note
 
-This package is not intented to be used outside of the [tiawl/spaceporn][1] dependencies chain. For this reasion, there are no contributing file/rules on this repository. However feel free to open an issue if you have a question. We will be happy to answer.
+This composite action is not intented to be used outside of the [tiawl/spaceporn][1] dependencies chain. For this reasion, there are no contributing file/rules on this repository. However feel free to open an issue if you have a question. We will be happy to answer.
 
 ## CICD reminder
 
