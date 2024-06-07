@@ -17,6 +17,7 @@ jobs:
           - spaceporn-action-cd-ping
           - spaceporn-action-cd-pong
           - spaceporn
+          - cimgui.zig
     runs-on: ubuntu-latest
     steps:
     - uses: tiawl/spaceporn-action-cd-ping@v1.0.1
