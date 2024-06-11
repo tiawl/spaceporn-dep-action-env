@@ -20,7 +20,7 @@ jobs:
           - cimgui.zig
     runs-on: ubuntu-latest
     steps:
-    - uses: tiawl/spaceporn-action-cd-ping@v1.0.1
+    - uses: tiawl/spaceporn-action-cd-ping@v1.0.2
       with:
         from: "${{ github.event.repository.name }}"
         is_composite: 'true'
