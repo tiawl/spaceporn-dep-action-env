@@ -15,6 +15,10 @@ These repositories are automatically updated when a new release is available:
 * [tiawl/spaceporn-action-cd-ping][4]
 * [tiawl/spaceporn-action-cd-pong][5]
 
+## License
+
+This repository is dedicated to the public domain. See the LICENSE file for more details.
+
 [1]:https://github.com/tiawl/spaceporn
 [2]:https://github.com/tiawl/spaceporn-action-bot
 [4]:https://github.com/tiawl/spaceporn-action-ci
