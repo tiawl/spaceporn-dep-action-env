@@ -14,6 +14,8 @@ These repositories are automatically updated when a new release is available:
 * [tiawl/spaceporn-action-ci][3]
 * [tiawl/spaceporn-action-cd-ping][4]
 * [tiawl/spaceporn-action-cd-pong][5]
+* [tiawl/cimgui.zig][7]
+* [tiawl/libjq.zig][8]
 
 ## License
 
@@ -25,3 +27,5 @@ This repository is dedicated to the public domain. See the LICENSE file for more
 [4]:https://github.com/tiawl/spaceporn-action-cd-ping
 [5]:https://github.com/tiawl/spaceporn-action-cd-pong
 [6]:https://docs.github.com/en/actions/learn-github-actions/contexts#env-context
+[7]:https://github.com/tiawl/cimgui.zig
+[8]:https://github.com/tiawl/libjq.zig
